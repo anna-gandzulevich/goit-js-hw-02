@@ -1,14 +1,13 @@
-function getElementWidth(content, padding, border) {
-  // Видаляємо 'px' і перетворюємо значення на числа
-  const contentWidth = parseFloat(content);
-  const paddingWidth = parseFloat(padding);
-  const borderWidth = parseFloat(border);
-
-  // Загальна ширина елемента з урахуванням border-box
-  return contentWidth + 2 * (paddingWidth + borderWidth);
+function checkForSpam(message) {
+  const lowerMessage = message.toLowerCase();
+  return lowerMessage.includes('spam') || lowerMessage.includes('sale');
 }
 
-// Перевірка коректності роботи функції
-console.log(getElementWidth('50px', '8px', '4px')); // Очікуваний результат: 74
-console.log(getElementWidth('60px', '12px', '8.5px')); // Очікуваний результат: 101
-console.log(getElementWidth('200px', '0px', '0px')); // Очікуваний результат: 200
+// Перевірка функції
+console.log(checkForSpam('Latest technology news')); // false
+console.log(checkForSpam('JavaScript weekly newsletter')); // false
+console.log(checkForSpam('Get best sale offers now!')); // true
+console.log(checkForSpam('Amazing SalE, only tonight!')); // true
+console.log(checkForSpam('Trust me, this is not a spam message')); // true
+console.log(checkForSpam('Get rid of sPaM emails. Our book in on sale!')); // true
+console.log(checkForSpam('[SPAM] How to earn fast money?')); // true
